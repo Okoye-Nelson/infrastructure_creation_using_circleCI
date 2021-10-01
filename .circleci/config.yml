@@ -8,14 +8,16 @@ jobs:
     docker:
       - image: amazon/aws-cli
         auth:
-          username: $AWS_ACCESS_KEY_ID
-          password: $AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: $AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
+          aws-region: us-west-2
     steps:
       - checkout
       - run:
           name: Create Cloudformation Stack
           command: |
-            aws cloudformation create --template-file template.yml --stack-name myStack --region us-west-2
+            aws cloudformation create-stack --template-body template.yml --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+            --region us-west-2
       # Fail the job intentionally to simulate an error.
       # Uncomment the line below if you want to fail the current step
       # - run: return 1
