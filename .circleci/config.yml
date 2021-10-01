@@ -7,10 +7,6 @@ jobs:
   create_infrastructure: 
     docker:
       - image: amazon/aws-cli
-        auth:
-          aws-access-key-id: $AWS_ACCESS_KEY_ID
-          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
-          aws-region: us-west-2
     steps:
       - checkout
       - run:
@@ -21,7 +17,7 @@ jobs:
       # Fail the job intentionally to simulate an error.
       # Uncomment the line below if you want to fail the current step
       # - run: return 1
-      #- destroy_environment
+      # - destroy_environment
 
 workflows:
   my_workflow:
