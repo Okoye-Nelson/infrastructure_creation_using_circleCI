@@ -1,7 +1,7 @@
 orbs:
   aws-cli: circleci/aws-cli@2.0.3
 
-job:
+jobs:
   create_infrastructure: 
     docker:
       - image: amazon/aws-cli
