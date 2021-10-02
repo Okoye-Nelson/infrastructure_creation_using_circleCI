@@ -12,7 +12,8 @@ jobs:
       - run:
           name: Create Cloudformation Stack
           command: |
-              aws cloudformation create-stack --stack-name myStack --template-body file://template.yml
+              aws cloudformation create-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+              --template-body file://template.yml --region us-west-2
       # Fail the job intentionally to simulate an error.
       # Uncomment the line below if you want to fail the current step
       # - run: return 1
